@@ -27,13 +27,12 @@ export function Home() {
 
   async function loadData() {
     try {
-      const storageData =
-        (await AsyncStorage.getItem("@passmanager:logins")) || "[]";
+      const value = await AsyncStorage.getItem("@passmanager:logins");
 
-      const parsedData = JSON.parse(storageData);
-
-      setSearchListData(parsedData);
-      setData(parsedData);
+      if (value) {
+        setSearchListData(JSON.parse(value));
+        setData(JSON.parse(value));
+      }
     } catch (e) {}
   }
   useEffect(() => {
@@ -47,8 +46,10 @@ export function Home() {
   );
 
   function handleFilterLoginData(search: string) {
-    const filtered = data.filter((item) => item.title.includes(search));
-    setSearchListData(filtered);
+    if (search) {
+      const filtered = data.filter((item) => item.title.includes(search));
+      setSearchListData(filtered);
+    }
   }
 
   return (

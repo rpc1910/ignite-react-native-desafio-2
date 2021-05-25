@@ -52,7 +52,7 @@ export function RegisterLoginData() {
         JSON.stringify([...parsedLogins, newLoginData])
       );
       reset();
-      Alert.alert("Sucesso", "Seu login foi cadastrado com sucesso!");
+      // Alert.alert("Sucesso", "Seu login foi cadastrado com sucesso!");
     } catch (e) {
       //
     }
